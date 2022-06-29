@@ -25,6 +25,8 @@ private:
     Game m_game;
     void loadPixmap();
     void move();
+    void reset();
+    void renderScene();
     bool m_p1UpMove, m_p1RightMove, m_p1DownMove, m_p1LeftMove;
     bool m_p2UpMove, m_p2RightMove, m_p2DownMove, m_p2LeftMove;
     QPixmap m_bgPixmap;

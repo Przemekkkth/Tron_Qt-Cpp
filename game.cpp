@@ -7,6 +7,11 @@ const QString Game::PATH_TO_BACKGROUND_PIXMAP = ":/images/background.jpg";
 Game::Game()
     : m_speed(4)
 {
+    init();
+}
+
+void Game::init()
+{
     for(int i = 0; i < RESOLUTION.width(); ++i)
     {
         for(int j = 0; j < RESOLUTION.height(); ++j)

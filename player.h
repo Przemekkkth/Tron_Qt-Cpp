@@ -14,6 +14,12 @@ struct Player
         color = c;
         dir = rand() % 4;
     }
+    void init()
+    {
+        x = rand() % Game::RESOLUTION.width();
+        y = rand() % Game::RESOLUTION.height();
+        dir = rand() % 4;
+    }
 
     void tick()
     {

@@ -3,12 +3,14 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsEllipseItem>
 #include <QGraphicsSimpleTextItem>
+#include <QDir>
+#include <QPainter>
 
 GameScene::GameScene(QObject *parent)
     : QGraphicsScene{parent}, m_p1UpMove(false), m_p1RightMove(false), m_p1DownMove(false), m_p1LeftMove(false),
       m_p2UpMove(false), m_p2RightMove(false), m_p2DownMove(false),
       m_p2LeftMove(false), m_loopSpeed(20.0f), m_deltaTime(0.0f), m_loopTime(0.0f),
-      m_p1(Qt::red), m_p2(Qt::green), m_isGame(true)
+      m_p1(Qt::yellow), m_p2(Qt::blue), m_isGame(true)
 {
     loadPixmap();
     setSceneRect(0,0, Game::RESOLUTION.width(), Game::RESOLUTION.height());
@@ -73,6 +75,14 @@ void GameScene::keyPressEvent(QKeyEvent *event)
         m_p2LeftMove = true;
     }
         break;
+    case Qt::Key_R:
+    {
+        reset();
+    }
+    case Qt::Key_Z:
+    {
+        //renderScene();
+    }
     }
 
     QGraphicsScene::keyPressEvent(event);
@@ -264,4 +274,32 @@ void GameScene::move()
             m_p2.dir=1;
         }
     }
+}
+
+void GameScene::reset()
+{
+    m_p1UpMove = m_p1RightMove = m_p1DownMove = m_p1LeftMove = false;
+    m_p2UpMove = m_p2RightMove = m_p2DownMove = m_p2LeftMove = false;
+    clear();
+    QGraphicsPixmapItem *bgItem = new QGraphicsPixmapItem(m_bgPixmap.scaled(Game::RESOLUTION.width(), Game::RESOLUTION.height()));
+    bgItem->setTransformationMode(Qt::SmoothTransformation);
+    addItem(bgItem);
+    m_game.init();
+    m_p1.init();
+    m_p2.init();
+    m_isGame = true;
+}
+
+
+void GameScene::renderScene()
+{
+    static int index = 0;
+    QString fileName = QDir::currentPath() + QDir::separator() + "screen" + QString::number(index++) + ".png";
+    QRect rect = sceneRect().toAlignedRect();
+    QImage image(rect.size(), QImage::Format_ARGB32);
+    image.fill(Qt::transparent);
+    QPainter painter(&image);
+    render(&painter);
+    image.save(fileName);
+    qDebug() << "saved " << fileName;
 }
