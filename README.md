@@ -16,5 +16,6 @@ Compile
 qmake && make
 ```
 ## Adons
-* [Qt] (https://www.qt.io/) - Cross-Platform software for embedded & desktop
-* [Yt] (https://youtu.be/E_tulczVtEU) - gameplay
+* [Qt](https://www.qt.io/) - Cross-Platform software for embedded & desktop
+* [yt](https://youtu.be/E_tulczVtEU) - gameplay
+* [Play online](https://przemekkkth.github.io/tron/index.html) - game hosted on GitHub
