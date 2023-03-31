@@ -18,4 +18,4 @@ qmake && make
 ## Adons
 * [Qt](https://www.qt.io/) - Cross-Platform software for embedded & desktop
 * [yt](https://youtu.be/E_tulczVtEU) - gameplay
-* [Play online](https://przemekkkth.github.io/assets/tron/index.html) - game hosted on GitHub
+* [Play online](https://przemekkkth.github.io/assets/games/tron/index.html) - game hosted on GitHub
